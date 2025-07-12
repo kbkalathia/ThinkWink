@@ -31,7 +31,7 @@ class AuthServiceClass {
   async register(data: { email: string; password: string }) {
     const existingDeveloper = await UserModel.find({ email: data.email });
 
-    if (existingDeveloper) {
+    if (existingDeveloper.length > 0) {
       throw new Error("Email already in use");
     }
 

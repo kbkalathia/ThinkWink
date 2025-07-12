@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { validationResult } from "express-validator";
 import { decodeToken, SendResponse } from "../utils/helpers";
 import { HttpStatusCode } from "axios";
+import { JWTPayload } from "../interfaces/jwt.interface";
 
 export const validateRequest = (
   req: Request,
@@ -39,7 +40,7 @@ export const authenticateRequest = (
     const token = authHeader.split(" ")[1];
     const decoded = decodeToken(token);
 
-    req.user = decoded;
+    req.user = decoded as JWTPayload;
 
     next();
   } catch (error) {

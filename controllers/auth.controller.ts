@@ -15,11 +15,11 @@ class AuthControllerClass {
         status: HttpStatusCode.Ok,
         message: "Login Success..!!",
       });
-    } catch (error: any) {
+    } catch (error) {
       return SendResponse({
         res,
         status: HttpStatusCode.InternalServerError,
-        message: "Error: " + error.message,
+        message: "Error: " + (error as Error).message,
       });
     }
   }
@@ -36,11 +36,11 @@ class AuthControllerClass {
         status: HttpStatusCode.Ok,
         message: "Registered Successfully..!!",
       });
-    } catch (error: any) {
+    } catch (error) {
       return SendResponse({
         res,
         status: HttpStatusCode.InternalServerError,
-        message: "Error: " + error.message,
+        message: "Error: " + (error as Error).message,
       });
     }
   }

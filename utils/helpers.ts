@@ -1,7 +1,7 @@
 import { HttpStatusCode } from "axios";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import mongoose from "mongoose";
+import { JWTPayload } from "../interfaces/jwt.interface";
 
 interface ResponsePayload<T> {
   res: any;
@@ -35,10 +35,7 @@ export const ComparePassword = async (
   return bcrypt.compare(plain, hash);
 };
 
-export const generateToken = (payload: {
-  id: mongoose.Types.ObjectId;
-  email: string;
-}) => {
+export const generateToken = (payload: JWTPayload) => {
   return jwt.sign(payload, process.env.JWT_SECRET as string);
 };
 
